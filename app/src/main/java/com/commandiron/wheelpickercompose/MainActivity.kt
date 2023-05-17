@@ -39,6 +39,7 @@ class MainActivity : ComponentActivity() {
                         WheelTimePicker { snappedTime ->
                             println(snappedTime)
                         }
+                        /*
                         WheelDatePicker { snappedDate ->
                             println(snappedDate)
                         }
@@ -66,7 +67,7 @@ class MainActivity : ComponentActivity() {
                             )
                         ){ snappedDateTime ->
                             println(snappedDateTime)
-                        }
+                        }*/
                     }
                 }
             }

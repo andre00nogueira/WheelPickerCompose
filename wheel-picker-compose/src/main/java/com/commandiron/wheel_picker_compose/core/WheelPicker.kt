@@ -17,7 +17,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
@@ -52,12 +51,9 @@ internal fun WheelPicker(
     val snapperLayoutInfo = rememberLazyListSnapperLayoutInfo(lazyListState = lazyListState)
     val isScrollInProgress = lazyListState.isScrollInProgress
 
-    LaunchedEffect(isScrollInProgress, count) {
-        if (!isScrollInProgress) {
-            onScrollFinished(calculateSnappedItemIndex(snapperLayoutInfo) ?: startIndex)?.let {
-                lazyListState.scrollToItem(it)
-            }
-        }
+    val snappedIndex = calculateSnappedItemIndex(snapperLayoutInfo)
+    if (isScrollInProgress) {
+        onScrollFinished(snappedIndex ?: startIndex)
     }
 
     Box(
